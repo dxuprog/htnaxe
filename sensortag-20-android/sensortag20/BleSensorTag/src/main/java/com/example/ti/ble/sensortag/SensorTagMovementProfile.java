@@ -78,6 +78,12 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
     public Calendar _startCal = null;
     public long _startTime;
 
+    public boolean active;
+    public String spin = "text..";
+    public int runningCount = 0;
+    public double maxAccel;
+
+
 	public SensorTagMovementProfile(Context con,BluetoothDevice device,BluetoothGattService service,BluetoothLeService controller) {
 		super(con,device,service,controller);
 		this.tRow =  new SensorTagMovementTableRow(con);
@@ -130,9 +136,9 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
 
 		this.periodWasUpdated(100);
         this.isEnabled = true;
+        maxAccel = 0.0;
 
-        _startCal = Calendar.getInstance();
-        _startTime = _startCal.getTimeInMillis();
+
 
 	}
 	@Override 
@@ -177,14 +183,46 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
 				row.sl8.addValue((float)v.y);
 				row.sl9.addValue((float)v.z);
 
-                //log code
-                Calendar curCal = Calendar.getInstance();
-                long runTimeInMilli = curCal.getTimeInMillis() - _startTime;
-                Point3D va = Sensor.MOVEMENT_ACC.convert(value);
-                Point3D vg = Sensor.MOVEMENT_GYRO.convert(value);
-                System.out.print(runTimeInMilli + " ");
-                System.out.println("ACCEL: " + String.format("X:%.2f, Y:%.2f, Z:%.2f", va.x,va.y,va.z)
-                        + "   GYRO: " + String.format("X:%.2f'/s, Y:%.2f'/s, Z:%.2f'/s", vg.x,vg.y,vg.z));
+
+
+                if (Saving.start)
+                {
+                    Saving.value = "Begin capture";
+                    //log code
+                    Calendar curCal = Calendar.getInstance();
+                    long runTimeInMilli = curCal.getTimeInMillis() - Saving.startTime;
+                    Point3D va = Sensor.MOVEMENT_ACC.convert(value);
+                    Point3D vg = Sensor.MOVEMENT_GYRO.convert(value);
+                    System.out.print(runTimeInMilli + " ");
+                    System.out.println("ACCEL: " + String.format("X:%.2f, Y:%.2f, Z:%.2f", va.x,va.y,va.z)
+                            + "   GYRO: " + String.format("X:%.2f'/s, Y:%.2f'/s, Z:%.2f'/s", vg.x,vg.y,vg.z));
+
+                    //calculate maximum G's
+                    if (Math.abs(va.x) > maxAccel)
+                    {
+                        maxAccel = Math.abs(va.x);
+                    }
+
+                    //rolling window, if Accel abs is less than 1.25 for atleast 25 samples, then stop.
+                    if (Math.abs(va.x) + Math.abs(va.y)  + Math.abs(va.z) < 1.35)
+                    {
+                        runningCount++;
+
+                        if (runningCount > 30)
+                        {
+                            Saving.start = false;
+                            Saving.value = "stopped recording \n" + "Peak G Force: " + String.format("%.2fG", maxAccel);
+
+                            runningCount = 0;
+                            maxAccel=0;
+                        }
+                    }
+                    else
+                    {
+                        runningCount = 0;
+                    }
+
+                }
 
 			}
 	}

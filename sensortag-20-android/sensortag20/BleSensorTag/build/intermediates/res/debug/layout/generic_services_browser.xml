@@ -24,11 +24,17 @@
         </TableLayout>
 
         <Button
+            android:id="@+id/start_stop_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FF0000"
-            android:text="SAMPLE BUTTON"
+            android:text="Capture Throw"
             />
+
+        <TextView
+            android:id="@+id/spin_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </ScrollView>

@@ -59,10 +59,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-
-
+import android.widget.TextView;
+import java.util.Timer;
+import java.util.TimerTask;
+import android.os.Handler;
+import java.util.Calendar;
 
 	// Fragment for Device View
 	public class DeviceView extends Fragment {
@@ -71,6 +75,7 @@ import android.widget.TableRow;
 
 	// GUI
 	private TableLayout table;
+    private Button mStartStopButton;
 	public boolean first = true;
 	
 	// House-keeping
@@ -83,7 +88,8 @@ import android.widget.TableRow;
 	public DeviceView() {
 		super();
 	}
-	
+
+    public Handler h = new Handler();
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	    Bundle savedInstanceState) {
@@ -92,10 +98,38 @@ import android.widget.TableRow;
 		
 		view = inflater.inflate(R.layout.generic_services_browser, container,false);
 		table = (TableLayout) view.findViewById(R.id.generic_services_layout);
-
+        mStartStopButton = (Button) view.findViewById(R.id.start_stop_button);
 		// Notify activity that UI has been inflated
 		mActivity.onViewInflated(view);
-		
+
+        this.
+
+        mStartStopButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Saving.start = true;
+                        Saving.startTime = Calendar.getInstance().getTimeInMillis();
+                    }
+                });
+
+
+        h.postDelayed(new Runnable(){
+            public void run(){
+                TextView spins = (TextView) getActivity().findViewById(R.id.spin_amount);
+                spins.setText(Saving.value);
+                h.postDelayed(this, 100);
+            }
+        }, 100);
+
+//        new Timer().scheduleAtFixedRate(new TimerTask() {
+//            @Override
+//            public void run() {
+//                TextView spins = (TextView) getActivity().findViewById(R.id.spin_amount);
+//                spins.setText(Saving.value);
+//            }
+//        }, 0, 50);
+
 		return view;
 	}
 
