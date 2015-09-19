@@ -144,6 +144,8 @@ import com.example.ti.ble.common.IBMIoTCloudProfile;
 		return (DeviceActivity) mThis;
 	}
 
+    public static boolean startRecording = false;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -561,7 +563,7 @@ import com.example.ti.ble.common.IBMIoTCloudProfile;
                                 }
                                 if (SensorTagAccelerometerProfile.isCorrectService(s)) {
                                     SensorTagAccelerometerProfile acc = new SensorTagAccelerometerProfile(context,mBluetoothDevice,s,mBtLeService);
-                                    mProfiles.add(acc);
+                                    //mProfiles.add(acc);
                                     if (nrNotificationsOn < maxNotifications) {
                                         acc.configureService();
                                         nrNotificationsOn++;

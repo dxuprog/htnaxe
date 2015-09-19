@@ -54,6 +54,8 @@
  **************************************************************************************************/
 package com.example.ti.ble.sensortag;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,9 +71,13 @@ import com.example.ti.ble.common.BluetoothLeService;
 import com.example.ti.ble.common.GattInfo;
 import com.example.ti.ble.common.GenericBluetoothProfile;
 import com.example.ti.util.Point3D;
+import android.util.Log;
 
 public class SensorTagMovementProfile extends GenericBluetoothProfile {
-	
+
+    public Calendar _startCal = null;
+    public long _startTime;
+
 	public SensorTagMovementProfile(Context con,BluetoothDevice device,BluetoothGattService service,BluetoothLeService controller) {
 		super(con,device,service,controller);
 		this.tRow =  new SensorTagMovementTableRow(con);
@@ -124,6 +130,10 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
 
 		this.periodWasUpdated(100);
         this.isEnabled = true;
+
+        _startCal = Calendar.getInstance();
+        _startTime = _startCal.getTimeInMillis();
+
 	}
 	@Override 
 	public void disableService() {
@@ -166,6 +176,16 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
 				row.sl7.addValue((float)v.x);
 				row.sl8.addValue((float)v.y);
 				row.sl9.addValue((float)v.z);
+
+                //log code
+                Calendar curCal = Calendar.getInstance();
+                long runTimeInMilli = curCal.getTimeInMillis() - _startTime;
+                Point3D va = Sensor.MOVEMENT_ACC.convert(value);
+                Point3D vg = Sensor.MOVEMENT_GYRO.convert(value);
+                System.out.print(runTimeInMilli + " ");
+                System.out.println("ACCEL: " + String.format("X:%.2f, Y:%.2f, Z:%.2f", va.x,va.y,va.z)
+                        + "   GYRO: " + String.format("X:%.2f'/s, Y:%.2f'/s, Z:%.2f'/s", vg.x,vg.y,vg.z));
+
 			}
 	}
     @Override

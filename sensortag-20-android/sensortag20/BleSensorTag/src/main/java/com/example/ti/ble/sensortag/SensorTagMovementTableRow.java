@@ -206,6 +206,7 @@ public class SensorTagMovementTableRow extends GenericCharacteristicTableRow {
 		rowLayout.addView(this.sl7);
 		rowLayout.addView(this.sl8);
 		rowLayout.addView(this.sl9);
+
 		
 		
 		
