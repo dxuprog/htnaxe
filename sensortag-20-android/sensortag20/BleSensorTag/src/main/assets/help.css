@@ -12,16 +12,40 @@ body
 	color:black;
 }
 
-h1 
-{
+
+
+h1{
+	font-family: roboto;
+	font-weight: medium;
 	font-size:20px;
 	text-align:center;
+	border-bottom: 0px;
+	color: #424242;
 }
 
-h2
-{
+h2{
+	font-family: roboto;
+	font-weight: lighter;
 	font-size:18px;
 	text-align:center;
+	border-bottom: 0px;
+	color: #979698
+}
+
+h3{
+	font-family: roboto;
+	font-weight: lighter;
+	font-size: 10;
+	border-bottom: 1px;
+	border-color: #424242;
+	border-bottom-width: 100%;
+}
+
+h4{
+	font-family: roboto;
+	font-weight: lighter;
+	font-size: 10;
+	border-bottom: 0px;
 }
 
 div.main 
