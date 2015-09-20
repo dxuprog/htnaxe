@@ -150,7 +150,7 @@ public class MainActivity extends ViewPagerActivity {
 
 		// Create the fragments and add them to the view pager and tabs
 		mScanView = new ScanView();
-		mSectionsPagerAdapter.addSection(mScanView, "BLE Device List");
+		mSectionsPagerAdapter.addSection(mScanView, "Select Axe");
 		
 		HelpView hw = new HelpView();
 		hw.setParameters("help_scan.html", R.layout.fragment_help, R.id.webpage);

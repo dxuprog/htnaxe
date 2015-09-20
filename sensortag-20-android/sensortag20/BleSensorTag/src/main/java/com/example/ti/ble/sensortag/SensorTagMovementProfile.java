@@ -82,6 +82,7 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
     public String spin = "text..";
     public int runningCount = 0;
     public double maxAccel;
+    public double maxGyro;
 
 
 	public SensorTagMovementProfile(Context con,BluetoothDevice device,BluetoothGattService service,BluetoothLeService controller) {
@@ -137,6 +138,7 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
 		this.periodWasUpdated(100);
         this.isEnabled = true;
         maxAccel = 0.0;
+        maxGyro = 0.0;
 
 
 
@@ -187,7 +189,7 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
 
                 if (Saving.start)
                 {
-                    Saving.value = "Begin capture";
+                    Saving.value = "Proceed with throw...";
                     //log code
                     Calendar curCal = Calendar.getInstance();
                     long runTimeInMilli = curCal.getTimeInMillis() - Saving.startTime;
@@ -211,6 +213,20 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
                         maxAccel = Math.abs(va.z);
                     }
 
+                    //calculate maximum gyro
+                    if (Math.abs(vg.x) > maxGyro)
+                    {
+                        maxGyro = Math.abs(vg.x);
+                    }
+                    else if (Math.abs(vg.y) > maxGyro)
+                    {
+                        maxGyro = Math.abs(vg.y);
+                    }
+                    else if (Math.abs(vg.z) > maxGyro)
+                    {
+                        maxGyro = Math.abs(vg.z);
+                    }
+
                     //rolling window, if Accel abs is less than 1.50 for atleast 25 samples, then stop.
                     if (Math.abs(va.x) + Math.abs(va.y)  + Math.abs(va.z) < 1.50)
                     {
@@ -219,10 +235,23 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
                         if (runningCount > 30)
                         {
                             Saving.start = false;
-                            Saving.value = "Peak G Force: " + String.format("%.2fG", maxAccel);
+
+                            String throwRelease = "Good";
+                            if (maxGyro < 70)
+                            {
+                                throwRelease = "Under";
+                            }
+                            else if (maxGyro > 140)
+                            {
+                                throwRelease = "Over";
+                            }
+
+                            Saving.value = "Axe Rotation: <b> " + throwRelease + "</b><br>"
+                                            + "<br>" + "Peak G-Force: <b>" + String.format("%.2fG", maxAccel) +"</b>";
 
                             runningCount = 0;
                             maxAccel=0;
+                            maxGyro=0;
                         }
                     }
                     else

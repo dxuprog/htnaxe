@@ -25,10 +25,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:orientation="vertical"
-            android:layout_marginTop="75dp"
-            android:layout_marginBottom="125dp">
+            android:layout_marginTop="75dp">
             <TextView
                 android:id="@+id/spin_amount"
                 android:layout_width="match_parent"
@@ -37,6 +36,13 @@
                 android:gravity="center"
                 android:textSize="26dp"
                 android:textIsSelectable="false" />
+            <ProgressBar
+                android:id="@+id/loading_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:layout_gravity="center_horizontal" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -49,10 +55,11 @@
                 android:layout_width="500px"
                 android:layout_height="wrap_content"
                 android:background="#E9544B"
-                android:text="Capture Throw"
+                android:text="Capture"
                 android:layout_gravity="center_horizontal"
                 android:padding="5dp"
-                android:fontFamily="Roboto Bold" />
+                android:fontFamily="Roboto Bold"
+                android:radius="10dp" />
         </LinearLayout>
     </LinearLayout>
 

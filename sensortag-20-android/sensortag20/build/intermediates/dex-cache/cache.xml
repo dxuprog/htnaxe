@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/dxu/Desktop/htnaxe/sensortag-20-android/sensortag20/BleSensorTag/libs/org.eclipse.paho.android.service-1.0.2.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3b8420e57139cc627a55be0c17b6687e92d7460f">
-        <dex dex="/Users/dxu/Desktop/htnaxe/sensortag-20-android/sensortag20/BleSensorTag/build/intermediates/pre-dexed/debug/org.eclipse.paho.android.service-1.0.2-de79c9d4a353d65d3a4974f9f0cd07748243de33.jar" />
-    </item>
-    <item
         jar="/Users/dxu/Desktop/htnaxe/sensortag-20-android/sensortag20/BleSensorTag/libs/org.eclipse.paho.client.mqttv3-1.0.2.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="02e433eb0fda11fe7170cf8214ba2f4d165c29b6">
         <dex dex="/Users/dxu/Desktop/htnaxe/sensortag-20-android/sensortag20/BleSensorTag/build/intermediates/pre-dexed/debug/org.eclipse.paho.client.mqttv3-1.0.2-90d94a516c72adc1d5eb12a232e4332804b38041.jar" />
+    </item>
+    <item
+        jar="/Users/dxu/Desktop/htnaxe/sensortag-20-android/sensortag20/BleSensorTag/libs/org.eclipse.paho.android.service-1.0.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3b8420e57139cc627a55be0c17b6687e92d7460f">
+        <dex dex="/Users/dxu/Desktop/htnaxe/sensortag-20-android/sensortag20/BleSensorTag/build/intermediates/pre-dexed/debug/org.eclipse.paho.android.service-1.0.2-de79c9d4a353d65d3a4974f9f0cd07748243de33.jar" />
     </item>
     <item
         jar="/Users/dxu/Desktop/eclipse/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"

@@ -60,6 +60,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -67,6 +68,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import android.os.Handler;
 import java.util.Calendar;
+import android.text.Html;
 
 	// Fragment for Device View
 	public class DeviceView extends Fragment {
@@ -116,13 +118,28 @@ import java.util.Calendar;
             public void run(){
                 if (getActivity() != null)
                 {
+                    ProgressBar progBar = (ProgressBar) view.findViewById(R.id.loading_bar);
+                    Button mStartStopButton = (Button) view.findViewById(R.id.start_stop_button);
+                    if (Saving.start)
+                    {
+                        progBar.setVisibility(View.VISIBLE);
+                        mStartStopButton.setVisibility(View.INVISIBLE);
+                    }
+                    else
+                    {
+                        progBar.setVisibility(View.INVISIBLE);
+                        mStartStopButton.setVisibility(View.VISIBLE);
+                    }
                     TextView spins = (TextView) getActivity().findViewById(R.id.spin_amount);
-                    spins.setText(Saving.value);
+                    spins.setText(Html.fromHtml(Saving.value));
                     h.postDelayed(this, 100);
                 }
             }
         }, 100);
 
+        //hide loading
+        ProgressBar progBar = (ProgressBar) view.findViewById(R.id.loading_bar);
+        progBar.setVisibility(View.INVISIBLE);
 
 		return view;
 	}
