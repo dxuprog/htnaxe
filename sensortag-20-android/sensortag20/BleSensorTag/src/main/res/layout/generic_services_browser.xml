@@ -23,18 +23,37 @@
 
         </TableLayout>
 
-        <Button
-            android:id="@+id/start_stop_button"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FF0000"
-            android:text="Capture Throw"
-            />
+            android:orientation="vertical"
+            android:layout_marginTop="75dp"
+            android:layout_marginBottom="125dp">
+            <TextView
+                android:id="@+id/spin_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="test"
+                android:gravity="center"
+                android:textSize="26dp"
+                android:textIsSelectable="false" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/spin_amount"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <Button
+                android:id="@+id/start_stop_button"
+                android:layout_width="500px"
+                android:layout_height="wrap_content"
+                android:background="#E9544B"
+                android:text="Capture Throw"
+                android:layout_gravity="center_horizontal"
+                android:padding="5dp"
+                android:fontFamily="Roboto Bold" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

@@ -177,11 +177,11 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
 				row.sl4.addValue((float)v.x);
 				row.sl5.addValue((float)v.y);
 				row.sl6.addValue((float)v.z);
-				v = Sensor.MOVEMENT_MAG.convert(value);
-				row.magValue.setText(String.format("X:%.2fuT, Y:%.2fuT, Z:%.2fuT", v.x,v.y,v.z));
-				row.sl7.addValue((float)v.x);
-				row.sl8.addValue((float)v.y);
-				row.sl9.addValue((float)v.z);
+//				v = Sensor.MOVEMENT_MAG.convert(value);
+//				row.magValue.setText(String.format("X:%.2fuT, Y:%.2fuT, Z:%.2fuT", v.x,v.y,v.z));
+//				row.sl7.addValue((float)v.x);
+//				row.sl8.addValue((float)v.y);
+//				row.sl9.addValue((float)v.z);
 
 
 
@@ -202,16 +202,24 @@ public class SensorTagMovementProfile extends GenericBluetoothProfile {
                     {
                         maxAccel = Math.abs(va.x);
                     }
+                    else if (Math.abs(va.y) > maxAccel)
+                    {
+                        maxAccel = Math.abs(va.y);
+                    }
+                    else if (Math.abs(va.z) > maxAccel)
+                    {
+                        maxAccel = Math.abs(va.z);
+                    }
 
-                    //rolling window, if Accel abs is less than 1.25 for atleast 25 samples, then stop.
-                    if (Math.abs(va.x) + Math.abs(va.y)  + Math.abs(va.z) < 1.35)
+                    //rolling window, if Accel abs is less than 1.50 for atleast 25 samples, then stop.
+                    if (Math.abs(va.x) + Math.abs(va.y)  + Math.abs(va.z) < 1.50)
                     {
                         runningCount++;
 
                         if (runningCount > 30)
                         {
                             Saving.start = false;
-                            Saving.value = "stopped recording \n" + "Peak G Force: " + String.format("%.2fG", maxAccel);
+                            Saving.value = "Peak G Force: " + String.format("%.2fG", maxAccel);
 
                             runningCount = 0;
                             maxAccel=0;

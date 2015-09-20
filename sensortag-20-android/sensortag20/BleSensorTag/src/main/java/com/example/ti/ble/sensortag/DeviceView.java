@@ -102,8 +102,6 @@ import java.util.Calendar;
 		// Notify activity that UI has been inflated
 		mActivity.onViewInflated(view);
 
-        this.
-
         mStartStopButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -116,19 +114,15 @@ import java.util.Calendar;
 
         h.postDelayed(new Runnable(){
             public void run(){
-                TextView spins = (TextView) getActivity().findViewById(R.id.spin_amount);
-                spins.setText(Saving.value);
-                h.postDelayed(this, 100);
+                if (getActivity() != null)
+                {
+                    TextView spins = (TextView) getActivity().findViewById(R.id.spin_amount);
+                    spins.setText(Saving.value);
+                    h.postDelayed(this, 100);
+                }
             }
         }, 100);
 
-//        new Timer().scheduleAtFixedRate(new TimerTask() {
-//            @Override
-//            public void run() {
-//                TextView spins = (TextView) getActivity().findViewById(R.id.spin_amount);
-//                spins.setText(Saving.value);
-//            }
-//        }, 0, 50);
 
 		return view;
 	}

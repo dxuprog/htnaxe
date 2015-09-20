@@ -159,7 +159,7 @@ public class SensorTagMovementTableRow extends GenericCharacteristicTableRow {
 				setVisibility(View.VISIBLE);
 			}
 		};
-		
+
 		RelativeLayout.LayoutParams tmpLayoutParams = new RelativeLayout.LayoutParams(
 		        RelativeLayout.LayoutParams.MATCH_PARENT,
 		        RelativeLayout.LayoutParams.MATCH_PARENT);
@@ -184,13 +184,13 @@ public class SensorTagMovementTableRow extends GenericCharacteristicTableRow {
         tmpLayoutParams.addRule(RelativeLayout.BELOW,
 		        this.sl6.getId());
         tmpLayoutParams.addRule(RelativeLayout.RIGHT_OF,icon.getId());
-		magValue.setLayoutParams(tmpLayoutParams);
+//		magValue.setLayoutParams(tmpLayoutParams);
 
         tmpLayoutParams = new RelativeLayout.LayoutParams(
 		        RelativeLayout.LayoutParams.MATCH_PARENT,
 		        RelativeLayout.LayoutParams.MATCH_PARENT);
-        tmpLayoutParams.addRule(RelativeLayout.BELOW,
-				magValue.getId());
+//        tmpLayoutParams.addRule(RelativeLayout.BELOW,
+//				magValue.getId());
         tmpLayoutParams.addRule(RelativeLayout.RIGHT_OF, icon.getId());
 		this.sl7.setLayoutParams(tmpLayoutParams);
 		this.sl8.setLayoutParams(tmpLayoutParams);
@@ -202,10 +202,10 @@ public class SensorTagMovementTableRow extends GenericCharacteristicTableRow {
 		rowLayout.addView(this.sl5);
 		rowLayout.addView(this.sl6);
 		
-		rowLayout.addView(magValue);
-		rowLayout.addView(this.sl7);
-		rowLayout.addView(this.sl8);
-		rowLayout.addView(this.sl9);
+//		rowLayout.addView(magValue);
+//		rowLayout.addView(this.sl7);
+//		rowLayout.addView(this.sl8);
+//		rowLayout.addView(this.sl9);
 
 		
 		

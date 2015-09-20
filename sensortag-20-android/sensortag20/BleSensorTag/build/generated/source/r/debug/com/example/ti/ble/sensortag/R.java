@@ -158,8 +158,8 @@ public final class R {
         public static final int pager=0x7f09002a;
         public static final int pb_progress=0x7f090009;
         public static final int progressBar=0x7f090035;
-        public static final int spin_amount=0x7f090032;
-        public static final int start_stop_button=0x7f090031;
+        public static final int spin_amount=0x7f090031;
+        public static final int start_stop_button=0x7f090032;
         public static final int status=0x7f09002d;
         public static final int textView=0x7f090033;
         public static final int textView2=0x7f090034;

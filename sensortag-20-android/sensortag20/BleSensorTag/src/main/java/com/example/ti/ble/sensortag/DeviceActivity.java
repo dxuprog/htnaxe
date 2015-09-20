@@ -170,10 +170,12 @@ import com.example.ti.ble.common.IBMIoTCloudProfile;
 
 		// GUI
 		mDeviceView = new DeviceView();
-		mSectionsPagerAdapter.addSection(mDeviceView, "Sensors");
+		mSectionsPagerAdapter.addSection(mDeviceView, "Throw");
 		HelpView hw = new HelpView();
 		hw.setParameters("help_device.html", R.layout.fragment_help, R.id.webpage);
-		mSectionsPagerAdapter.addSection(hw, "Help");
+		mSectionsPagerAdapter.addSection(hw, "Coaching")
+
+        ;
 		mProfiles = new ArrayList<GenericBluetoothProfile>();
 		progressDialog = new ProgressDialog(DeviceActivity.this);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -189,6 +191,7 @@ import com.example.ti.ble.common.IBMIoTCloudProfile;
 		XmlResourceParser xpp = res.getXml(R.xml.gatt_uuid);
 		new GattInfo(xpp);
 
+        getActionBar().setTitle("Swing");
 	}
 
 	@Override
